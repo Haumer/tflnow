@@ -1,23 +1,25 @@
-<div class="card-content">
-  <div class="name">
-    <span class="color" style="width: 48px; background-color: <%= @line.color %>; height: 12px;"></span> <%= @line.name %>
-  </div>
-  <div class="status">
-    <%= @line.status %>
-  </div>
-  <div class="incident-count">
-    <% if @incidents.empty? %>
-      No Incidents
-    <% else %>
-      <ul>
-        <% @incidents.each do |incident| %>
-          <li>
-            <%= incident.reason %>
-            <br>
-            <i><%= incident.created_at.strftime("on %A, %d %b %Y %l:%M %p")  %></i>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+<div class="line-content">
+  <div class="card-content">
+    <div class="name">
+      <span class="color" style="width: 48px; background-color: <%= @line.color %>; height: 12px;"></span> <%= @line.name %>
+    </div>
+    <div class="status">
+      <%= @line.status %>
+    </div>
+    <div class="incident-count">
+      <% if @incidents.empty? %>
+        No Incidents
+      <% else %>
+        <ul>
+          <% @incidents.each do |incident| %>
+            <li>
+              <%= incident.reason %>
+              <br>
+              <i><%= incident.created_at.strftime("on %A, %d %b %Y %l:%M %p")  %></i>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>
