@@ -15,7 +15,6 @@ class PagesController < ApplicationController
           Incident.create(line: Line.where(name: line["name"]).first, reason: line['lineStatuses'].first['reason'])
         end
       end
-
     end
     @good_lines = Line.where(status: "Good Service").order("LENGTH(name) ASC") + Line.where(status: "Service Closed").order("LENGTH(name) ASC")
     @bad_lines = Line.where.not(status: "Good Service").order("LENGTH(name) ASC") - Line.where(status: "Service Closed").order("LENGTH(name) ASC")
