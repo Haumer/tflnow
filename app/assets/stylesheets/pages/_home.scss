@@ -1,11 +1,14 @@
 // Specific CSS for your home-page
 
-body a {
-  text-decoration: none;
-  color: black;
-  &:hover{
+body {
+  font-family: 'Be Vietnam', sans-serif;
+  a {
     text-decoration: none;
     color: black;
+    &:hover {
+      text-decoration: none;
+      color: black;
+    }
   }
 }
 
@@ -46,7 +49,7 @@ h1 {
 
 .delay-line-card {
   min-height: 85px;
-  min-width: 220px;
+  min-width: calc(50% - 30px);
   max-width: calc(50% - 30px);
   margin-left: 15px;
   display: flex;
@@ -58,11 +61,19 @@ h1 {
 }
 
 .content {
-  margin: 0 auto;
+  margin: 25px auto;
 }
 
 
 .card-content {
   width: 100%;
   padding-top: 10px;
+}
+
+.bar {
+  margin: 50px;
+  height: 2px;
+  border-radius: 10px;
+  background-color: grey;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.16)
 }
