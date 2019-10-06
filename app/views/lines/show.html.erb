@@ -22,4 +22,10 @@
       <% end %>
     </div>
   </div>
+  <div class="stations">
+    <% @line.stations.each do |station| %>
+      <%= station.station_name %>
+      <div class="line-color" style="background-color: <%= @line.color %>; height: 1px; width: 20%;"></div>
+    <% end %>
+  </div>
 </div>

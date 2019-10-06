@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_04_183822) do
+ActiveRecord::Schema.define(version: 2019_10_06_131259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,14 +33,22 @@ ActiveRecord::Schema.define(version: 2019_07_04_183822) do
     t.string "color"
   end
 
-  create_table "stations", force: :cascade do |t|
-    t.string "name"
+  create_table "station_lines", force: :cascade do |t|
     t.bigint "line_id"
+    t.bigint "station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["line_id"], name: "index_stations_on_line_id"
+    t.index ["line_id"], name: "index_station_lines_on_line_id"
+    t.index ["station_id"], name: "index_station_lines_on_station_id"
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "station_name"
+    t.integer "station_number"
+    t.string "station_status"
   end
 
   add_foreign_key "incidents", "lines"
-  add_foreign_key "stations", "lines"
 end

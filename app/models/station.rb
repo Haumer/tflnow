@@ -1,3 +1,4 @@
 class Station < ApplicationRecord
-  belongs_to :line
+  has_many :station_lines
+  has_many :lines, through: :station_lines
 end
