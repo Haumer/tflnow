@@ -22,10 +22,17 @@
       <% end %>
     </div>
   </div>
-  <div class="stations">
+  <div class="stations" style="display: flex; flex-wrap: wrap; align-items: center; font-size: 10px;">
     <% @line.stations.each do |station| %>
-      <%= station.station_name %>
-      <div class="line-color" style="background-color: <%= @line.color %>; height: 1px; width: 20%;"></div>
+      <div class="connection" style="margin: 0px 0px 32px 0px;display: flex; flex-wrap: wrap; align-items: center;">
+        <div class="line-color" style="background-color: <%= @line.color %>; height: 12px; width: 48px;"></div>
+        <div class="circle-parent">
+          <div class="cirlce" style="border-radius: 50%; height: 25px; width: 25px; border-color: black; border-width: 1px; border: solid; position: relative; text-align: center; margin: -2px;">
+            <p style="position: relative; bottom: -16px; width: 96px; left: -40px; margin-top: 3px;"><%= station.station_name %></p>
+          </div>
+        </div>
+        <div class="line-color" style="background-color: <%= @line.color %>; height: 12px; width: 48px;"></div>
+      </div>
     <% end %>
   </div>
 </div>

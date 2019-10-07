@@ -74,16 +74,137 @@ bakerloo = [
   "Elephant & Castle"
 ]
 
-lname = Line.where(name: "Bakerloo").first
-bakerloo.each_with_index do |station, i|
-  Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
-  StationLine.create!(line: lname, station: Station.last)
+jubilee = [
+  "Stanmore",
+  "Canons Park",
+  "Queensbury",
+  "Kingsbury",
+  "Wembly Park",
+  "Neasden",
+  "Dollis Hill",
+  "Willesden Green",
+  "Kilburn",
+  "West Hampstead",
+  "Finchley Road",
+  "Swiss Cottage",
+  "St John's Wood",
+  "Baker Street",
+  "Bond Street",
+  "Green Park",
+  "Westminster",
+  "Waterloo",
+  "Southwark",
+  "London Bridge",
+  "Bermondsey",
+  "Canada Water",
+  "Canary Wharf",
+  "North Greenwich",
+  "Canning Town",
+  "West Ham",
+  "Stratford"
+]
+
+# district has branches!
+district = [
+  "Upminster",
+  "Upminster Bridge",
+  "Hornchurch",
+  "Elm Park",
+  "Dagenham East",
+  "Dagenham Heathway",
+  "Becontree",
+  "Upney",
+  "Barking",
+  "East Ham",
+  "Plaistow",
+  "West Ham",
+  "Bromley-by-Bow",
+  "Bow Road",
+  "Bow Chruch",
+  "Stepney Green",
+  "Whitechapel",
+  "Aldgate East",
+  "Tower Hill",
+  "Monument",
+  "Cannon Street",
+  "Embankment",
+  "Westminster",
+  "Victoria",
+  "Sloane Square",
+  "South Kensington",
+  "Earl's Court",
+  "West Kensington",
+  "Barons Court",
+  "Hammersmith",
+  "Ravenscourt Park",
+  "Stamford Brook",
+  "Turnham Green",
+  "Chiswick Park",
+  "Acton Town",
+  "Ealing Common",
+  "Ealing Broadway"
+]
+
+hammersmith = [
+  "Barking",
+  "East Ham",
+  "Plaistow",
+  "West Ham",
+  "Bromley-by-Bow",
+  "Bow Road",
+  "Bow Chruch",
+  "Stepney Green",
+  "Whitechapel",
+  "Aldgate East",
+  "Liverpool Street",
+  "Moorgate",
+  "Barbican",
+  "Farringdon",
+  "King's Cross St. Pancras",
+  "Euston Square",
+  "Great Portland Street",
+  "Baker Street",
+  "Edgeware Road",
+  "Paddington",
+  "Royal Oak",
+  "Westbourne Park",
+  "Ladbroke Grove",
+  "Latimer Road",
+  "Wood Lane",
+  "Shepherd's Bush Market",
+  "Goldhawk Road",
+  "Hammersmith"
+]
+
+stations = [
+  [victoria, "Victoria"],
+  [jubilee, "Jubilee"],
+  [bakerloo, "Bakerloo"],
+  [district, "District"],
+  [hammersmith, "Hammersmith & City"]
+]
+
+stations.each do |pair|
+  pair.first.each_with_index do |station, i|
+    Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
+    StationLine.create!(line: Line.where(name: pair.last).first, station: Station.last)
+  end
 end
 
-lname = Line.where(name: "Victoria").first
-victoria.each_with_index do |station, i|
-  Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
-  StationLine.create!(line: lname, station: Station.last)
-end
+# lname = Line.where(name: "Bakerloo").first
+# bakerloo.each_with_index do |station, i|
+#   Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
+#   StationLine.create!(line: lname, station: Station.last)
+# end
 
+# lname = Line.where(name: "Victoria").first
+# victoria.each_with_index do |station, i|
+#   Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
+#   StationLine.create!(line: lname, station: Station.last)
+# end
 
+# lname = Line.where(name: "Jubilee").first
+# jubilee.each_with_index do |station, i|
+#   Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
+#   StationLine.create!(line: lname, station: Station.last)
+# end
