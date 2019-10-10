@@ -320,7 +320,7 @@ northern = [
 ]
 
 stations = [
-  [northern, "Northern"]
+  [northern, "Northern"],
   [metropolitan, "Metropolitan"],
   [central, "Central"],
   [piccadilly, "Piccadilly"],
