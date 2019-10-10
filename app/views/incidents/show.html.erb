@@ -16,13 +16,19 @@
       </ul>
     </div>
     <div class="stations">
-      <% @line.stations.each do |station| %>
+      <% @stations.each do |station| %>
         <div class="display">
           <div class="line-color" style="background-color: <%= @line.color %>; height: 12px; width: 48px;"></div>
           <div class="circle-parent">
-            <div class="cirlce">
-              <p style="position: relative; bottom: -16px; width: 96px; left: -40px; margin-top: 3px;"><%= station.station_name %></p>
-            </div>
+            <% if station.station_status != "Good Service" %>
+              <div class="cirlce" style="border-color: red;">
+                <p><%= station.station_name %></p>
+              </div>
+            <% else %>
+              <div class="cirlce" style="border-color: black;">
+                <p><%= station.station_name %></p>
+              </div>
+            <% end %>
           </div>
           <div class="line-color" style="background-color: <%= @line.color %>; height: 12px; width: 48px;"></div>
         </div>
