@@ -289,7 +289,39 @@ central = [
   "Ealing Broadway"
 ]
 
+metropolitan = [
+  "Aldgate",
+  "Liverpool Street",
+  "Moorgate",
+  "Barbican",
+  "Farringdon",
+  "King's Cross St. Pancras",
+  "Euston Square",
+  "Great Portland Street",
+  "Baker Street",
+  "Finchley Road",
+  "Wembly Park",
+  "Preston Road",
+  "Northwick Park",
+  "Harrow-on-the-Hill",
+  "North Harrow",
+  "Pinner",
+  "Northwood Hills",
+  "Northwood",
+  "Moor Park",
+  "Rickmansworth",
+  "Chorelywood",
+  "Chalfont & Latimer",
+  "Chesham"
+]
+
+northern = [
+
+]
+
 stations = [
+  [northern, "Northern"]
+  [metropolitan, "Metropolitan"],
   [central, "Central"],
   [piccadilly, "Piccadilly"],
   [circle, "Circle"],
@@ -306,21 +338,3 @@ stations.each do |pair|
     StationLine.create!(line: Line.where(name: pair.last).first, station: Station.last)
   end
 end
-
-# lname = Line.where(name: "Bakerloo").first
-# bakerloo.each_with_index do |station, i|
-#   Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
-#   StationLine.create!(line: lname, station: Station.last)
-# end
-
-# lname = Line.where(name: "Victoria").first
-# victoria.each_with_index do |station, i|
-#   Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
-#   StationLine.create!(line: lname, station: Station.last)
-# end
-
-# lname = Line.where(name: "Jubilee").first
-# jubilee.each_with_index do |station, i|
-#   Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
-#   StationLine.create!(line: lname, station: Station.last)
-# end
