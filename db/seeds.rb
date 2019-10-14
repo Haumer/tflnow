@@ -316,7 +316,38 @@ metropolitan = [
 ]
 
 northern = [
-
+  "High Barnet",
+  "Totterige & Whetstone",
+  "Woodside Park",
+  "West Finchley",
+  "Finchley Central",
+  "East Finchley",
+  "Highgate",
+  "Archway",
+  "Tufnell Park",
+  "Kentish Town",
+  "Cambden Central",
+  "Mornington Cresent",
+  "Euston",
+  "Warren Street",
+  "Goodge Street",
+  "Tott Court Road",
+  "Leicester Square",
+  "Charing Cross",
+  "Embankment",
+  "Waterloo",
+  "Kennington",
+  "Oval",
+  "Stockwell",
+  "Clapham North",
+  "Clapham Common",
+  "Clapham South",
+  "Balham",
+  "Tooting Bec",
+  "Tooting Broadway",
+  "Colliers Wood",
+  "South Wimbledon",
+  "Morden"
 ]
 
 stations = [

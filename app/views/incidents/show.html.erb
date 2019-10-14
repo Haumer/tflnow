@@ -11,7 +11,7 @@
         <li>
           <%= @incident.reason %>
           <br>
-          <i><%= @incident.created_at.strftime("on %A, %d %b %Y %l:%M %p")  %></i>
+          <i><%= @incident.created_at.reverse.strftime("on %A, %d %b %Y %l:%M %p")  %></i>
         </li>
       </ul>
     </div>
