@@ -5,7 +5,9 @@
     <% end %>
   </div>
   <div class="center">
-    <h1>Tube Status</h1>
+    <div class="name">
+      <h1>Tube Status</h1> <div class="status-indicator" style="background-color: <%= @status ? "green" : "red" ; %>"></div>
+    </div>
   </div>
   <div class="right">
     <%= link_to "TfL Map", map_path %>
