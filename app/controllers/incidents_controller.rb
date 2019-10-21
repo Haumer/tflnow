@@ -18,4 +18,8 @@ class IncidentsController < ApplicationController
 
     @stations = @stations.sort_by { |e| e.station_number }
   end
+
+  def index
+    @incidents = Incident.all
+  end
 end

@@ -1,0 +1,16 @@
+<div class="incident-count">
+  <% if @incidents.empty? %>
+    No Incidents
+  <% else %>
+    <ul>
+      <% @incidents.each do |incident| %>
+        <li>
+          <div style="display: flex; flex-wrap: wrap;">
+            <div class="color" style="width: 48px; background-color: <%= incident.line.color %>; height: 12px;"></div> <div class="reason" style="max-width: 90%;"><%= incident.reason %></div>
+          </div>
+          <i><%= incident.created_at.strftime("on %A, %d %b %Y %l:%M %p")  %></i>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
