@@ -11,7 +11,6 @@ class Line < ApplicationRecord
     response = req.read
     json = JSON.parse(response)
     json.reject do |line|
-      p line
       line['lineStatuses'].first['statusSeverityDescription'] == 'Good Service'
     end.empty?
   end
