@@ -5,7 +5,7 @@ class Line < ApplicationRecord
   has_many :station_lines
   has_many :stations, through: :station_lines
 
-  def self.status_api
+  def self.status_api?
     url = "https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status"
     req = open(url)
     response = req.read
