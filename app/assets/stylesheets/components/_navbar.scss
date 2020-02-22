@@ -4,7 +4,10 @@
   justify-content: space-around;
   align-items: center;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.16)
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.16);
+  h1 {
+    margin: 0px;
+  }
 }
 
 .left, .right{
@@ -17,7 +20,8 @@
   border-radius: 50%;
   height: 20px;
   width: 20px;
-  margin: 25px 15px 0px 15px;
+  margin: 12px 15px 0px 15px;
+
 }
 
 .name {
