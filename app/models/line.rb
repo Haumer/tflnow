@@ -14,4 +14,8 @@ class Line < ApplicationRecord
       line['lineStatuses'].first['statusSeverityDescription'] == 'Good Service'
     end.empty?
   end
+
+  def ordered_stations
+    self.station_lines.where(line: self).order(position: :asc).map(&:station)
+  end
 end

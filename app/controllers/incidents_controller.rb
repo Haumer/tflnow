@@ -5,18 +5,18 @@ class IncidentsController < ApplicationController
     @stations = @line.stations
 
     @stations.select do |station|
-      @incident.reason.downcase.include?(station.station_name.downcase)
+      @incident.reason.downcase.include?(station.name.downcase)
     end.each do |sstation|
-      sstation.update!(station_status: "Fault")
+      sstation.update!(status: "Fault")
     end
 
     @stations.reject do |station|
-      @incident.reason.downcase.include?(station.station_name.downcase)
+      @incident.reason.downcase.include?(station.name.downcase)
     end.each do |sstation|
-      sstation.update!(station_status: "Good Service")
+      sstation.update!(status: "Good Service")
     end
-
-    @stations = @stations.sort_by { |e| e.station_number }
+    raise
+    @stations = @stations.sort_by { |e| e.station_lines }
   end
 
   def index

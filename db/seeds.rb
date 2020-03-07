@@ -365,7 +365,11 @@ stations = [
 
 stations.each do |pair|
   pair.first.each_with_index do |station, i|
-    Station.create!(station_name: station, station_number: i+1, station_status: "Good Service")
-    StationLine.create!(line: Line.where(name: pair.last).first, station: Station.last)
+    if Station.find_by_name(station).nil?
+      Station.create!(name: station, status: "Good Service")
+      StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
+    else
+      StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
+    end
   end
 end
