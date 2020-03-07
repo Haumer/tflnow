@@ -16,10 +16,10 @@
       <% @bad_lines.each do |line| %>
         <div class="delay-line-card">
           <div class="card-content">
+            <%= link_to line_incident_path(line.id, line.incidents.last.id) do %>
             <div class="name">
               <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span> <%= line.name %>
             </div>
-            <%= link_to line_incident_path(line.id, line.incidents.last.id) do %>
               <div class="status">
                 <%= line.status %>
               </div>
@@ -37,19 +37,19 @@
     <% @good_lines.each do |line| %>
       <div class="line-card">
         <div class="card-content">
-          <div class="name">
-            <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span> <%= line.name %>
-          </div>
-          <div class="status">
-            <%= line.status %>
-          </div>
-          <div class="incident-count">
-            <%= link_to line_path(line) do %>
+          <%= link_to line_path(line) do %>
+            <div class="name">
+              <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span> <%= line.name %>
+            </div>
+            <div class="status">
+              <%= line.status %>
+            </div>
+            <div class="incident-count">
               <% unless line.incidents.empty? %>
                 <%= pluralize(line.incidents.count, "Incident") %>
               <% end %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
