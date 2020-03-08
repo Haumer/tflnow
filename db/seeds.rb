@@ -1,3 +1,9 @@
+# destroy all lines, branches and stations
+Line.destroy_all
+Station.destroy_all
+Branch.destroy_all
+
+# Lines
 lines = [
   ["bakerloo", "Bakerloo", "#b25f00"],
   ["central", "Central", "#f12d11"],
@@ -15,6 +21,7 @@ lines = [
   ["waterloo-city", "Waterloo & City", "#81cebc"]
 ]
 
+# Branches
 branches = [
   {
     line_name: "Central",
@@ -169,6 +176,7 @@ branches = [
   }
 ]
 
+# Stations
 victoria = [
   "Walthamstow Central",
   "Blackhorse Road",
@@ -490,6 +498,7 @@ northern = [
   "Morden"
 ]
 
+# combined Station and line
 stations = [
   [northern, "Northern"],
   [metropolitan, "Metropolitan"],
@@ -502,10 +511,6 @@ stations = [
   [district, "District"],
   [hammersmith, "Hammersmith & City"]
 ]
-
-
-Line.destroy_all
-Station.destroy_all
 
 puts ">>>>>Starting Lines"
 lines.each do |line|
