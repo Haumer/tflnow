@@ -570,7 +570,7 @@ lines = [
     line_color: "#99005e",
     branches: [
       {
-        branch: "main"
+        branch: "main",
         stations: [
           "Aldgate",
           "Liverpool Street",
@@ -628,45 +628,45 @@ lines = [
   }
 ]
 
-puts ">>>>>Starting Lines"
-lines.each do |line|
-  puts "Creating Line: #{line[1]}"
-  Line.create!(color: line.last, line_id: line.first, name: line[1])
-  Branch.create!()
-end
+# puts ">>>>>Starting Lines"
+# lines.each do |line|
+#   puts "Creating Line: #{line[1]}"
+#   Line.create!(color: line.last, line_id: line.first, name: line[1])
+#   Branch.create!()
+# end
 
-puts ">>>>>Starting Stations"
-stations.each do |pair|
-  pair.first.each_with_index do |station, i|
-    if Station.find_by_name(station).nil?
-      created_station = Station.create!(name: station, status: "Good Service")
-      puts "Creating Station: #{created_station.name}"
-      StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
-    else
-      StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
-    end
-  end
-end
+# puts ">>>>>Starting Stations"
+# stations.each do |pair|
+#   pair.first.each_with_index do |station, i|
+#     if Station.find_by_name(station).nil?
+#       created_station = Station.create!(name: station, status: "Good Service")
+#       puts "Creating Station: #{created_station.name}"
+#       StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
+#     else
+#       StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
+#     end
+#   end
+# end
 
-puts ">>>>>Starting Branches"
-branches.each do |branch_hash|
-  line = Line.find_by_name(branch_hash[:line_name])
-  puts "Starting #{line.name} branches"
-  starting_position = line.station_lines.order(position: :asc).last.position
-  branch_hash[:branches].each_with_index do |branch, index|
-    starting_branch = Branch.create!(station: Station.find_by_name(branch[:start]))
-    puts "Started #{starting_branch.station.name} Branch with id: #{index + 1}"
-    link_branch = Branch.create!(station: Station.find_by_name(branch[:link]), link: true) unless branch[:link].nil?
-    puts "#{starting_branch.station.name} ends in #{link_branch.station.name}" if link_branch
-    branch[:stations].each do |branch_station|
-      station = Station.find_by_name(branch_station).nil? ? Station.create!(name: branch_station, status: "Good Service") : Station.find_by_name(branch_station)
-      BranchLine.create!(
-        line: line,
-        station: station,
-        position: starting_position += 1,
-        branch: true,
-        branch_number: index + 1
-      )
-    end
-  end
-end
+# puts ">>>>>Starting Branches"
+# branches.each do |branch_hash|
+#   line = Line.find_by_name(branch_hash[:line_name])
+#   puts "Starting #{line.name} branches"
+#   starting_position = line.station_lines.order(position: :asc).last.position
+#   branch_hash[:branches].each_with_index do |branch, index|
+#     starting_branch = Branch.create!(station: Station.find_by_name(branch[:start]))
+#     puts "Started #{starting_branch.station.name} Branch with id: #{index + 1}"
+#     link_branch = Branch.create!(station: Station.find_by_name(branch[:link]), link: true) unless branch[:link].nil?
+#     puts "#{starting_branch.station.name} ends in #{link_branch.station.name}" if link_branch
+#     branch[:stations].each do |branch_station|
+#       station = Station.find_by_name(branch_station).nil? ? Station.create!(name: branch_station, status: "Good Service") : Station.find_by_name(branch_station)
+#       BranchLine.create!(
+#         line: line,
+#         station: station,
+#         position: starting_position += 1,
+#         branch: true,
+#         branch_number: index + 1
+#       )
+#     end
+#   end
+# end
