@@ -1,13 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# destroy all lines, branches and stations
 Line.destroy_all
 Station.destroy_all
+Branch.destroy_all
 
+# Lines
 lines = [
   ["bakerloo", "Bakerloo", "#b25f00"],
   ["central", "Central", "#f12d11"],
@@ -25,10 +21,162 @@ lines = [
   ["waterloo-city", "Waterloo & City", "#81cebc"]
 ]
 
-lines.each do |line|
-  Line.create!(color: line.last, line_id: line.first, name: line[1])
-end
+# Branches
+branches = [
+  {
+    line_name: "Central",
+    branches: [
+      {
+        stations: [
+          "West Acton",
+          "Ealing Broadway"
+        ],
+        start: "North Acton"
+      },
+      {
+        stations: [
+          "Wanstead",
+          "Redbridge",
+          "Gants Hill",
+          "Newbury Park",
+          "Barkingside",
+          "Fairlop",
+          "Hainault",
+          "Grange Hill",
+          "Chigwell",
+          "Roding Valley"
+        ],
+        start: "Leytonstone",
+        link: "Woodford"
+      }
+    ]
+  },
+  {
+    line_name: "Piccadilly",
+    branches: [
+      {
+        stations: [
+          "Heathrow Terminal 4",
+          "Ealing Broadway"
+        ],
+        start: "Hatton Cross",
+      }
+    ]
+  },
+  {
+    line_name: "District",
+    branches: [
+      {
+        stations: [
+          "Gunnersbury",
+          "Kew Gardens",
+          "Richmond"
+        ],
+        start: "Turnham Green",
+      },
+      {
+        stations: [
+          "West Brompton",
+          "Fulham Broadway",
+          "Parsons Green",
+          "Putney Bridge",
+          "East Putney",
+          "Southfields",
+          "Wimbledon Park",
+          "Wimbledon"
+        ],
+        start: "Earl's Court"
+      },
+      {
+        stations: [
+          "Kensington Olympia"
+        ],
+        start: "Earl's Court"
+      },
+      {
+        stations: [
+          "High Street Kensington",
+          "Notting Hill",
+          "Bayswater",
+          "Paddington",
+          "Edgeware Road"
+        ],
+        start: "Earl's Court"
+      }
+    ]
+  },
+  {
+    line_name: "Northern",
+    branches: [
+      {
+        stations: [
+          "Elephant & Castle",
+          "Borough",
+          "London Bridge",
+          "Monument",
+          "Moorgate",
+          "Old Street",
+          "Angel"
+        ],
+        start: "Kennington",
+        link: "Euston"
+      },
+      {
+        stations: [
+          "Chalk Farm",
+          "Belize Park",
+          "Hampstead",
+          "Golders Green",
+          "Brent Cross",
+          "Hendon Central",
+          "Colindale",
+          "Burnt Oak",
+          "Edgeware"
+        ],
+        start: "Cambden Town",
+      },
+      {
+        stations: [
+          "Mill Hill East"
+        ],
+        start: "Finchley Central"
+      }
+    ]
+  },
+  {
+    line_name: "Metropolitan",
+    branches: [
+      {
+        stations: [
+          "West Harrow",
+          "Raynors Lane",
+          "Eastcote",
+          "Ruislip Manor",
+          "Ruislip",
+          "Ickenham",
+          "Hillingdon",
+          "Uxbridge"
+        ],
+        start: "Harrow-on-the-Hill"
+      },
+      {
+        stations: [
+          "Croxley",
+          "Watford"
+        ],
+        start: "Moor Park"
+      },
+      {
+        stations: [
+          "Amersham"
+        ],
+        start: "Chalfont & Latimer"
+      }
+    ]
+  }
+]
 
+# Stations
 victoria = [
   "Walthamstow Central",
   "Blackhorse Road",
@@ -250,8 +398,8 @@ piccadilly = [
   "Hounslow Central",
   "Hounslow West",
   "Hatton Cross",
-  "Heathrow Terminal 4",
-  "Heathrow Terminal 1,2,3"
+  "Heathrow Terminal 1,2,3",
+  "Heathrow Terminal 5"
 ]
 
 central = [
@@ -326,7 +474,7 @@ northern = [
   "Archway",
   "Tufnell Park",
   "Kentish Town",
-  "Cambden Central",
+  "Cambden Town",
   "Mornington Cresent",
   "Euston",
   "Warren Street",
@@ -350,6 +498,7 @@ northern = [
   "Morden"
 ]
 
+# combined Station and line
 stations = [
   [northern, "Northern"],
   [metropolitan, "Metropolitan"],
@@ -363,13 +512,44 @@ stations = [
   [hammersmith, "Hammersmith & City"]
 ]
 
+puts ">>>>>Starting Lines"
+lines.each do |line|
+  puts "Creating Line: #{line[1]}"
+  Line.create!(color: line.last, line_id: line.first, name: line[1])
+end
+
+puts ">>>>>Starting Stations"
 stations.each do |pair|
   pair.first.each_with_index do |station, i|
     if Station.find_by_name(station).nil?
-      Station.create!(name: station, status: "Good Service")
+      created_station = Station.create!(name: station, status: "Good Service")
+      puts "Creating Station: #{created_station.name}"
       StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
     else
       StationLine.create!(line: Line.where(name: pair.last).first, station: Station.find_by_name(station), position: i + 1)
+    end
+  end
+end
+
+puts ">>>>>Starting Branches"
+branches.each do |branch_hash|
+  line = Line.find_by_name(branch_hash[:line_name])
+  puts "Starting #{line.name} branches"
+  starting_position = line.station_lines.order(position: :asc).last.position
+  branch_hash[:branches].each_with_index do |branch, index|
+    starting_branch = Branch.create!(station: Station.find_by_name(branch[:start]))
+    puts "Started #{starting_branch.station.name} Branch with id: #{index + 1}"
+    link_branch = Branch.create!(station: Station.find_by_name(branch[:link]), link: true) unless branch[:link].nil?
+    puts "#{starting_branch.station.name} ends in #{link_branch.station.name}" if link_branch
+    branch[:stations].each do |branch_station|
+      station = Station.find_by_name(branch_station).nil? ? Station.create!(name: branch_station, status: "Good Service") : Station.find_by_name(branch_station)
+      StationLine.create!(
+        line: line,
+        station: station,
+        position: starting_position += 1,
+        branch: true,
+        branch_number: index + 1
+      )
     end
   end
 end
