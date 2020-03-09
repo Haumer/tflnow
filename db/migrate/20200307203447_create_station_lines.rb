@@ -3,6 +3,7 @@ class CreateStationLines < ActiveRecord::Migration[5.2]
     create_table :station_lines do |t|
       t.references :branch
       t.references :station
+      t.integer :position
 
       t.timestamps
     end

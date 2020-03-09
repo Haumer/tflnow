@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_203447) do
   create_table "branches", force: :cascade do |t|
     t.bigint "line_id", null: false
     t.boolean "link", default: false
+    t.string "branch_type", default: "side"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["line_id"], name: "index_branches_on_line_id"
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_203447) do
 
   create_table "lines", force: :cascade do |t|
     t.string "name"
-    t.string "line_slug"
+    t.string "slug"
     t.string "status"
     t.string "last_update"
     t.string "color"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_203447) do
   create_table "station_lines", force: :cascade do |t|
     t.bigint "branch_id"
     t.bigint "station_id"
+    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["branch_id"], name: "index_station_lines_on_branch_id"

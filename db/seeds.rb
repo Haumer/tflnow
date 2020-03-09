@@ -628,6 +628,45 @@ lines = [
   }
 ]
 
+lines.each do |line|
+  # create Line
+  created_line = Line.create!(
+    name: line[:line_name],
+    slug: line[:line_slug],
+    color: line[:color]
+  )
+  line[:branches].each do |branch|
+    # create Branch
+    type = branch[:branch] unless branch[:branch].nil?
+    created_branch = Branch.create!(
+      line: created_line,
+      link: branch[:start],
+      branch_type: type
+    )
+    branch[:stations].each_with_index do |station, index|
+      # create Stations and StationLine
+      if Station.find_by_name(station).nil?
+        created_station = Station.create!(
+          name: station,
+          status: "Good Service"
+        )
+        puts "Creating Station: #{created_station.name}"
+        StationLine.create!(
+          branch: created_branch,
+          station: created_station,
+          position: index + 1
+        )
+      else
+        StationLine.create!(
+          branch: created_branch,
+          station: Station.find_by_name(station),
+          position: index + 1
+        )
+      end
+    end
+  end
+end
+
 # puts ">>>>>Starting Lines"
 # lines.each do |line|
 #   puts "Creating Line: #{line[1]}"
