@@ -277,7 +277,7 @@ lines = [
     ]
   },
   {
-    line_name: "Cirlce",
+    line_name: "Circle",
     line_slug: "circle",
     line_color: "#ffd401",
     branches: [
