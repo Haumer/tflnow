@@ -10,55 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_08_014226) do
+ActiveRecord::Schema.define(version: 2020_03_07_203447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "branches", force: :cascade do |t|
-    t.bigint "station_id", null: false
+    t.bigint "line_id", null: false
     t.boolean "link", default: false
+    t.string "branch_type", default: "side"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["station_id"], name: "index_branches_on_station_id"
+    t.index ["line_id"], name: "index_branches_on_line_id"
   end
 
   create_table "incidents", force: :cascade do |t|
     t.bigint "line_id"
+    t.string "reason"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "reason"
-    t.string "incident_status"
     t.index ["line_id"], name: "index_incidents_on_line_id"
   end
 
   create_table "lines", force: :cascade do |t|
     t.string "name"
-    t.string "line_id"
+    t.string "slug"
     t.string "status"
     t.string "last_update"
+    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "color"
   end
 
   create_table "station_lines", force: :cascade do |t|
-    t.bigint "line_id"
+    t.bigint "branch_id"
     t.bigint "station_id"
+    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "branch", default: false
-    t.integer "position"
-    t.integer "branch_number", default: 1
-    t.index ["line_id"], name: "index_station_lines_on_line_id"
+    t.index ["branch_id"], name: "index_station_lines_on_branch_id"
     t.index ["station_id"], name: "index_station_lines_on_station_id"
   end
 
   create_table "stations", force: :cascade do |t|
+    t.string "name"
+    t.integer "position"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "status"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +74,6 @@ ActiveRecord::Schema.define(version: 2020_03_08_014226) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "branches", "stations"
+  add_foreign_key "branches", "lines"
   add_foreign_key "incidents", "lines"
 end
