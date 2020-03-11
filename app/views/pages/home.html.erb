@@ -16,7 +16,7 @@
       <% @bad_lines.each do |line| %>
         <div class="delay-line-card">
           <div class="card-content">
-            <%= link_to line_incident_path(line.id, line.incidents.last.id) do %>
+            <%= link_to line_path(line) do %>
             <div class="name">
               <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span> <%= line.name %>
             </div>
