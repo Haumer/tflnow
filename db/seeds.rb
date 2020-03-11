@@ -24,6 +24,7 @@ lines_info = [
 # Branches
 lines = [
   {
+    color: "#81cebc",
     line_name: "Waterloo & City",
     line_slug: "waterloo-city",
     line_color: "#81cebc",
@@ -39,6 +40,7 @@ lines = [
     ]
   },
   {
+    color: "#009cdf",
     line_name: "Victoria",
     line_slug: "victoria",
     line_color: "#009cdf",
@@ -67,6 +69,7 @@ lines = [
     ]
   },
   {
+    color: "#5d75b5",
     line_name: "TfL Rail",
     line_slug: "tfl-rail",
     line_color: "#5d75b5",
@@ -81,6 +84,7 @@ lines = [
     ]
   },
   {
+    color: "#f6800b",
     line_name: "London Overground",
     line_slug: "london-overground",
     line_color: "#f6800b",
@@ -95,6 +99,7 @@ lines = [
     ]
   },
   {
+    color: "#959ca1",
     line_name: "Jubilee",
     line_slug: "jubilee",
     line_color: "#959ca1",
@@ -135,6 +140,7 @@ lines = [
     ]
   },
   {
+    color: "#f5859f",
     line_name: "Hammersmith & City",
     line_slug: "hammersmith-city",
     line_color: "#f5859f",
@@ -176,6 +182,7 @@ lines = [
     ]
   },
   {
+    color: "#00b1b1",
     line_name: "DLR",
     line_slug: "dlr",
     line_color: "#00b1b1",
@@ -190,6 +197,7 @@ lines = [
     ]
   },
   {
+    color: "#00853a",
     line_name: "District",
     line_slug: "district",
     line_color: "#00853a",
@@ -277,6 +285,7 @@ lines = [
     ]
   },
   {
+    color: "#ffd401",
     line_name: "Circle",
     line_slug: "circle",
     line_color: "#ffd401",
@@ -324,6 +333,7 @@ lines = [
     ]
   },
   {
+    color: "#b25f00",
     line_name: "Bakerloo",
     line_slug: "bakerloo",
     line_color: "#b25f00",
@@ -361,6 +371,7 @@ lines = [
     ]
   },
   {
+    color: "#f12d11",
     line_name: "Central",
     line_slug: "central",
     line_color: "#f12d11",
@@ -429,6 +440,7 @@ lines = [
     ]
   },
   {
+    color: "#1a3c96",
     line_name: "Piccadilly",
     line_slug: "piccadilly",
     line_color: "#1a3c96",
@@ -487,6 +499,7 @@ lines = [
     ]
   },
   {
+    color: "#252122",
     line_name: "Northern",
     line_slug: "northern",
     line_color: "#252122",
@@ -565,6 +578,7 @@ lines = [
     ]
   },
   {
+    color: "#99005e",
     line_name: "Metropolitan",
     line_slug: "metropolitan",
     line_color: "#99005e",

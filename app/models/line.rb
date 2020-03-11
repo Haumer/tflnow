@@ -2,9 +2,8 @@ require "open-uri"
 
 class Line < ApplicationRecord
   has_many :incidents, dependent: :destroy
-  has_many :station_lines
-  has_many :stations, through: :station_lines
   has_many :branches, dependent: :destroy
+  has_many :station_lines, through: :branches
 
   def self.status_api?
     url = "https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status"
@@ -17,6 +16,6 @@ class Line < ApplicationRecord
   end
 
   def ordered_stations
-    self.station_lines.where(line: self).order(position: :asc).map(&:station)
+    self.station_lines.joins(:branch).order(position: :asc).map(&:station)
   end
 end
