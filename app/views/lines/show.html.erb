@@ -25,16 +25,19 @@
   <div class="stations">
     <% @stations.each do |station| %>
       <div class="display">
-        <div class="line-color" style="background-color: <%= @line.color %>; height: 12px; width: 48px;"></div>
-        <div class="circle-parent">
-          <% if station.status != "Good Service" %>
-            <div class="cirlce" style="border-color: red;">
-              <p><%= station.name %></p>
-            </div>
-          <% else %>
-            <div class="cirlce" style="border-color: black;">
-              <p><%= station.name %></p>
-            </div>
+        <div class="line-color" style="background-color: <%= @line.color %>; height: 12px; width: 48px;">
+        </div>
+          <div class="circle-parent">
+            <%= link_to station_path(station) do %>
+            <% if station.status != "Good Service" %>
+              <div class="cirlce" style="border-color: red;">
+                <p><%= station.name %></p>
+              </div>
+            <% else %>
+              <div class="cirlce" style="border-color: black;">
+                <p><%= station.name %></p>
+              </div>
+            <% end %>
           <% end %>
         </div>
         <div class="line-color" style="background-color: <%= @line.color %>; height: 12px; width: 48px;"></div>
