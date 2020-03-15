@@ -5,8 +5,8 @@ Branch.destroy_all
 
 # Master vars:
 ledger = Ledger.create()
-ledger.update(api_log: ledger.api_log << "start - #{DateTime.now}")
-ledger.update(uptime_log: ledger.uptime_log << "start - #{DateTime.now}")
+ledger.update(api_log: ledger.api_log << ["start", DateTime.now])
+ledger.update(uptime_log: ledger.uptime_log << ["start", DateTime.now])
 
 User.create(
   admin: true,
