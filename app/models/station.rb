@@ -5,8 +5,4 @@ class Station < ApplicationRecord
   has_many :lines, through: :branches
 
   validates :name, presence: true, uniqueness: true
-
-  def position(line)
-    StationLine.where(station: self, line: line)
-  end
 end

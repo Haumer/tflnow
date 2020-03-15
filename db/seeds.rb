@@ -665,17 +665,19 @@ lines.each do |line|
           status: "Good Service"
         )
         puts "Creating Station: #{created_station.name}"
-        StationLine.create!(
+        station_line = StationLine.create!(
           branch: created_branch,
           station: created_station,
           position: index + 1
         )
+        puts "created #{station_line.name} with position #{station_line.position}"
       else
         StationLine.create!(
           branch: created_branch,
           station: Station.find_by_name(station),
           position: index + 1
         )
+        puts "created #{station_line.name} with position #{station_line.position}"
       end
     end
   end
