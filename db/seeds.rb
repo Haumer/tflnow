@@ -3,6 +3,17 @@ Line.destroy_all
 Station.destroy_all
 Branch.destroy_all
 
+# Master vars:
+ledger = Ledger.create()
+ledger.update(api_log: ledger.api_log << "start - #{DateTime.now}")
+ledger.update(uptime_log: ledger.uptime_log << "start - #{DateTime.now}")
+
+User.create(
+  admin: true,
+  password: 123456,
+  email: "admin@tflnow.com"
+)
+
 # Lines
 lines_info = [
   ["bakerloo", "Bakerloo", "#b25f00"],                    # done
