@@ -3,6 +3,17 @@ Line.destroy_all
 Station.destroy_all
 Branch.destroy_all
 
+# Master vars:
+ledger = Ledger.create()
+ledger.update(api_log: ledger.api_log << "start - #{DateTime.now}")
+ledger.update(uptime_log: ledger.uptime_log << "start - #{DateTime.now}")
+
+User.create(
+  admin: true,
+  password: 123456,
+  email: "admin@tflnow.com"
+)
+
 # Lines
 lines_info = [
   ["bakerloo", "Bakerloo", "#b25f00"],                    # done
@@ -665,17 +676,19 @@ lines.each do |line|
           status: "Good Service"
         )
         puts "Creating Station: #{created_station.name}"
-        StationLine.create!(
+        station_line = StationLine.create!(
           branch: created_branch,
           station: created_station,
           position: index + 1
         )
+        puts "created #{station_line.name} with position #{station_line.position}"
       else
         StationLine.create!(
           branch: created_branch,
           station: Station.find_by_name(station),
           position: index + 1
         )
+        puts "created #{station_line.name} with position #{station_line.position}"
       end
     end
   end
