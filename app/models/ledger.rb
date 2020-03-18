@@ -22,6 +22,4 @@ class Ledger < ApplicationRecord
       @@ledger.update(uptime_log: new_occurance)
     end
   end
-  @@ledger = Ledger.first
-  @@ledger.instance_methods
 end
