@@ -12,5 +12,6 @@ class PagesController < ApplicationController
 
   def panel
     CheckTflJob.perform_later if params[:api]
+    ReasonParsingJob.perform_later if params[:reason]
   end
 end

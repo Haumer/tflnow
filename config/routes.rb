@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get "map", to: "pages#map"
-  get "panel", to: "pages#admin"
+  get "panel", to: "pages#panel"
   get "search", to: "stations#search"
 
   resources :lines, only: [:show] do

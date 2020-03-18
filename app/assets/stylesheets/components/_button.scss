@@ -50,7 +50,8 @@
   background-image: -moz-linear-gradient(top, #e74a29 0%, #e6451b 50%, #d02e17 50%, #b3150b 100%);
   background-image: -o-linear-gradient(top, #e74a29 0%, #e6451b 50%, #d02e17 50%, #b3150b 100%);
   background-image: linear-gradient(to bottom, #e74a29 0%, #e6451b 50%, #d02e17 50%, #b3150b 100%);
-  max-width: 107px;
+  max-width: 125px;
+  justify-content: space-around;
   display: flex;
   align-items: center;
 }
