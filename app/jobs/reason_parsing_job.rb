@@ -3,7 +3,8 @@ class ReasonParsingJob < ApplicationJob
 
   def perform(*args)
     puts "Starting: <================================================="
-    Incident.all.find_each do |incident|
+    incidents = Incident.where(created_at: 2.days.ago..DateTime::Infinity.new )
+    incidents.find_each do |incident|
       # NOTE: doesnt work for Hammersmith and Waterterloo => '&' in name (maybe highbury and islington too?)
       if incident.reason.downcase.split(":").first.include?(incident.line.name.downcase)
         reason = nil
