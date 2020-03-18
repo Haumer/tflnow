@@ -10,7 +10,7 @@ class PagesController < ApplicationController
 
   end
 
-  def admin
+  def panel
     CheckTflJob.perform_later if params[:api]
   end
 end
