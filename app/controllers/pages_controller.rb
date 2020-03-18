@@ -9,4 +9,8 @@ class PagesController < ApplicationController
   def map
 
   end
+
+  def admin
+    CheckTflJob.perform_later if params[:api]
+  end
 end

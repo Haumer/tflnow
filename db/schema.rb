@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 2020_03_15_030053) do
   end
 
   create_table "ledgers", force: :cascade do |t|
-    t.text "api_log", default: [], array: true
-    t.text "uptime_log", default: [], array: true
+    t.datetime "api_log", default: ["2020-03-15 13:38:08"], array: true
+    t.datetime "uptime_log", default: ["2020-03-15 13:38:08"], array: true
+    t.text "day_log", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

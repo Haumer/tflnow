@@ -5,7 +5,7 @@ namespace :api do
     start_time = Time.now
     CheckTflJob.perform_now
     end_time = Time.now
-    Ledger::Api.next_occurance ["occured", DateTime.now]
+    Ledger::Api.next_occurance DateTime.now
     puts "...done! (#{end_time - start_time}s)"
   end
 end
