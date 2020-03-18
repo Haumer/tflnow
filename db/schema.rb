@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_030053) do
+ActiveRecord::Schema.define(version: 2020_03_18_191113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2020_03_15_030053) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["line_id"], name: "index_branches_on_line_id"
+  end
+
+  create_table "incident_reasons", force: :cascade do |t|
+    t.bigint "reason_id", null: false
+    t.bigint "incident_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["incident_id"], name: "index_incident_reasons_on_incident_id"
+    t.index ["reason_id"], name: "index_incident_reasons_on_reason_id"
   end
 
   create_table "incidents", force: :cascade do |t|
@@ -49,6 +58,13 @@ ActiveRecord::Schema.define(version: 2020_03_15_030053) do
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reasons", force: :cascade do |t|
+    t.string "severity"
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "station_incidents", force: :cascade do |t|
@@ -92,6 +108,8 @@ ActiveRecord::Schema.define(version: 2020_03_15_030053) do
   end
 
   add_foreign_key "branches", "lines"
+  add_foreign_key "incident_reasons", "incidents"
+  add_foreign_key "incident_reasons", "reasons"
   add_foreign_key "incidents", "lines"
   add_foreign_key "station_incidents", "incidents"
   add_foreign_key "station_incidents", "stations"
