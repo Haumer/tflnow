@@ -22,4 +22,13 @@ class Ledger < ApplicationRecord
       @@ledger.update(uptime_log: new_occurance)
     end
   end
+
+  module Reasons
+    @@ledger = Ledger.first
+
+    def self.next_occurance(occurance)
+      new_occurance = @@ledger.uptime_log << occurance
+      @@ledger.update(reasons_log: new_occurance)
+    end
+  end
 end
