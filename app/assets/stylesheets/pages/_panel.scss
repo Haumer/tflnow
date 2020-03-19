@@ -7,11 +7,19 @@
 .adimn-left {
   height: 100%;
   width: 20%;
-  background-color: red;
+  background-color: #F4F4F4;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-button {
+
 }
 
 .adimn-right {
   height: 100%;
   width: 80%;
-  background-color: blue;
+  background-color: #FFFFFF;
 }
