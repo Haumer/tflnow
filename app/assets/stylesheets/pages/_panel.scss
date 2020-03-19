@@ -1,0 +1,17 @@
+.admin-container {
+  display: flex;
+  height: calc(100vh - 108px);
+  width: 100vw;
+}
+
+.adimn-left {
+  height: 100%;
+  width: 20%;
+  background-color: red;
+}
+
+.adimn-right {
+  height: 100%;
+  width: 80%;
+  background-color: blue;
+}
