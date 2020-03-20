@@ -1,16 +1,17 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tasks</a>
+    <a class="nav-link active" id="tasks-tab" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks" aria-selected="true">Tasks</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Stats</a>
+    <a class="nav-link" id="stats-tab" data-toggle="tab" href="#stats" role="tab" aria-controls="stats" aria-selected="false">Stats</a>
   </li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane active" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
     <%= render 'tasks' %>
   </div>
-  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <div class="tab-pane" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+    <%= render 'stats' %>
   </div>
 </div>
