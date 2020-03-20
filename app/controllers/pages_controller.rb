@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def panel
     @stations = Station.all
     @lines = Line.all
+    @ledger = Ledger.first
     CheckTflJob.perform_later if params[:api]
     ReasonParsingJob.perform_later if params[:reason]
   end

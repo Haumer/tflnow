@@ -1,4 +1,5 @@
 class Ledger < ApplicationRecord
+  @@ledger = Ledger.first
   module Api
     @@ledger = Ledger.first
     def self.last_run
@@ -30,5 +31,9 @@ class Ledger < ApplicationRecord
       new_occurance = @@ledger.uptime_log << occurance
       @@ledger.update(reasons_log: new_occurance)
     end
+  end
+
+  def self.api_log
+    @@ledger.api_log
   end
 end
