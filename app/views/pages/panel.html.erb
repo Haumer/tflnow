@@ -5,6 +5,9 @@
   <li class="nav-item">
     <a class="nav-link" id="stats-tab" data-toggle="tab" href="#stats" role="tab" aria-controls="stats" aria-selected="false">Stats</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" id="ledger-tab" data-toggle="tab" href="#ledger" role="tab" aria-controls="ledger" aria-selected="false">Ledger</a>
+  </li>
 </ul>
 
 <div class="tab-content">
@@ -13,5 +16,8 @@
   </div>
   <div class="tab-pane" id="stats" role="tabpanel" aria-labelledby="stats-tab">
     <%= render 'stats', lines: @lines, stations: @stations %>
+  </div>
+  <div class="tab-pane" id="ledger" role="tabpanel" aria-labelledby="ledger-tab">
+    <%= render 'ledger' %>
   </div>
 </div>
