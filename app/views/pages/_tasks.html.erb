@@ -1,0 +1,21 @@
+<div class="admin-container">
+  <div class="admin-actions adimn-left">
+    <div class="admin-button-text">
+      Run options
+    </div>
+    <div class="admin-buttons">
+      <%= link_to panel_path(api: :true) do %>
+        <div class="button red">
+          Check TFL
+        </div>
+      <% end %>
+
+      <%= link_to panel_path(reason: :true) do %>
+        <div class="button red">
+          Get Reasons
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="adimn-right"></div>
+</div>

@@ -1,0 +1,22 @@
+<div class="admin-container">
+  <div class="admin-stats">
+    <div class="admin-station-incidents">
+      Incidents by Station
+      <% stations.each do |station| %>
+        <div class="admin-station">
+          <% unless station.station_incidents.count.zero? %>
+            <%= station.name %>: <%= station.station_incidents.count %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="admin-line-incidents">
+      Incidents by Line
+      <% lines.each do |line| %>
+        <div class="admin-line">
+          <%= line.name %>: <%= line.incidents.count %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

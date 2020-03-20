@@ -11,6 +11,8 @@ class PagesController < ApplicationController
   end
 
   def panel
+    @stations = Station.all
+    @lines = Line.all
     CheckTflJob.perform_later if params[:api]
     ReasonParsingJob.perform_later if params[:reason]
   end
