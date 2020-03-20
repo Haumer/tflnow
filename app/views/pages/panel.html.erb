@@ -12,6 +12,6 @@
     <%= render 'tasks' %>
   </div>
   <div class="tab-pane" id="stats" role="tabpanel" aria-labelledby="stats-tab">
-    <%= render 'stats' %>
+    <%= render 'stats', lines: @lines, stations: @stations %>
   </div>
 </div>
