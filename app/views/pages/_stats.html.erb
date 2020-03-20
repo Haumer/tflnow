@@ -3,21 +3,26 @@
 
   </div>
   <div class="admin-stats admin-right">
-    <div class="admin-station-incidents">
+    <div class="admin-station-incidents admin-section">
       Incidents by Station
       <% stations.each do |station| %>
         <div class="admin-station">
           <% unless station.station_incidents.count.zero? %>
-            <%= station.name %>: <%= station.station_incidents.count %>
+            <div class="name">
+              <% station.lines.each do |line| %>
+                <span style="width: <%= 48 / station.lines.count %>px; background-color: <%= line.color %>; height: 12px;"></span>
+              <% end %>
+              <span style="margin-left: 6px;"><%= station.name %>: <%= station.station_incidents.count %></span>
+            </div>
           <% end %>
         </div>
       <% end %>
     </div>
-    <div class="admin-line-incidents">
+    <div class="admin-line-incidents admin-section">
       Incidents by Line
       <% lines.each do |line| %>
-        <div class="admin-line">
-          <%= line.name %>: <%= line.incidents.count %>
+        <div class="name">
+          <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span> <%= line.name %>: <%= line.incidents.count %>
         </div>
       <% end %>
     </div>
