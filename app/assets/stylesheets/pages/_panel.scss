@@ -4,7 +4,7 @@
   width: 100vw;
 }
 
-.adimn-left {
+.admin-left {
   height: 100%;
   width: 20%;
   background-color: #F4F4F4;
@@ -18,8 +18,12 @@
 
 }
 
-.adimn-right {
+.admin-right {
   height: 100%;
   width: 80%;
   background-color: #FFFFFF;
+}
+
+.admin-stats {
+  display: flex;
 }
