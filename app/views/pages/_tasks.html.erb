@@ -19,7 +19,7 @@
   </div>
   <div class="admin-right">
     <div class="admin-last-tf-check">
-      TFL was last checked at: <%= @ledger.api_log.last %>
+      TFL was last checked at: <%= @ledger.api_log.last.strftime("%e %b %Y %H:%M:%S%p")  %>
     </div>
   </div>
 </div>
