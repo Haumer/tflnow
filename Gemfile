@@ -33,5 +33,8 @@ group :development, :test do
   gem 'capybara'
   gem 'webdrivers', '~> 4.0'
   gem 'launchy'
-  gem 'rspec-rails', '~> 4.0.0.rc1'
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
+  gem 'shoulda-matchers'
 end
