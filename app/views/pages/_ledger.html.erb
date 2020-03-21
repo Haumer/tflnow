@@ -2,7 +2,10 @@
   <div class="admin-left">
 
   </div>
-  <div class="admin-right">
-    <%= ledger.api_log.last.strftime("%m/%d/%Y") %>
+  <div class="admin-right admin-sub-section">
+    <% ledger.api_log.each do |log| %>
+      <%= log.strftime("%m/%d/%Y") %>
+      <br>
+    <% end %>
   </div>
 </div>
