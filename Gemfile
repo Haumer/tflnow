@@ -33,4 +33,5 @@ group :development, :test do
   gem 'capybara'
   gem 'webdrivers', '~> 4.0'
   gem 'launchy'
+  gem 'rspec-rails', '~> 4.0.0.rc1'
 end
