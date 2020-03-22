@@ -21,4 +21,8 @@ class Line < ApplicationRecord
   def ordered_stations
     self.station_lines.joins(:branch).order(position: :asc).map(&:station)
   end
+
+  def self.ordered_by_incidents
+    Line.joins(:incidents).group('lines.id').order('COUNT(lines.id) DESC')
+  end
 end
