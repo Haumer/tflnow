@@ -3,8 +3,8 @@
 
   </div>
   <div class="admin-right admin-sub-section">
-    <% ledger.api_log.each do |log| %>
-      <%= log.strftime("%m/%d/%Y") %>
+    <% ledger.api_log.map { |log| log.strftime("%m/%d/%Y") }.uniq.each do |log| %>
+      <%= log %>
       <br>
     <% end %>
   </div>
