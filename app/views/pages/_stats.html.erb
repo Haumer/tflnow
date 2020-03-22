@@ -26,5 +26,14 @@
         </div>
       <% end %>
     </div>
+    <div class="admin-line-incidents admin-section" style="overflow:scroll">
+      Reasons
+      <% reasons.each do |reason| %>
+        <div class="name">
+          <%= reason.content %>
+        </div>
+          <br>
+      <% end %>
+    </div>
   </div>
 </div>

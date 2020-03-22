@@ -14,6 +14,7 @@ class PagesController < ApplicationController
     @stations = Station.all
     @lines = Line.all
     @ledger = Ledger
+    @reasons = Reason.all
     CheckTflJob.perform_later if params[:api]
     ReasonParsingJob.perform_later if params[:reason]
   end
