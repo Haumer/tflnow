@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_213712) do
+ActiveRecord::Schema.define(version: 2020_03_22_024046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,12 +43,15 @@ ActiveRecord::Schema.define(version: 2020_03_19_213712) do
   end
 
   create_table "ledgers", force: :cascade do |t|
-    t.datetime "api_log", default: ["2020-03-15 13:38:08"], array: true
-    t.datetime "uptime_log", default: ["2020-03-15 13:38:08"], array: true
-    t.text "day_log", default: [], array: true
+    t.datetime "old_api_log", default: ["2020-03-15 13:38:08"], array: true
+    t.datetime "old_uptime_log", default: ["2020-03-15 13:38:08"], array: true
+    t.text "old_day_log", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "reasons_log", default: ["2020-03-19 21:39:55"], array: true
+    t.datetime "api_log", default: ["2020-03-22 02:51:44"], array: true
+    t.datetime "uptime_log", default: ["2020-03-22 02:51:44"], array: true
+    t.text "day_log", default: [], array: true
   end
 
   create_table "lines", force: :cascade do |t|
