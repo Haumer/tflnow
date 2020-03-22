@@ -681,14 +681,14 @@ lines.each do |line|
           station: created_station,
           position: index + 1
         )
-        puts "created #{station_line.name} with position #{station_line.position}"
+        puts "created StationLine for #{station_line.station.name} with position #{station_line.position}"
       else
-        StationLine.create!(
+        station_line = StationLine.create!(
           branch: created_branch,
           station: Station.find_by_name(station),
           position: index + 1
         )
-        puts "created #{station_line.name} with position #{station_line.position}"
+        puts "created StationLine for #{station_line.station.name} with position #{station_line.position}"
       end
     end
   end

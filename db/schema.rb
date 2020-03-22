@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 2020_03_22_024046) do
   end
 
   create_table "ledgers", force: :cascade do |t|
-    t.datetime "old_api_log", default: ["2020-03-22 03:00:04"], array: true
-    t.datetime "old_uptime_log", default: ["2020-03-22 03:00:04"], array: true
+    t.datetime "old_api_log", default: ["2020-03-22 18:04:05"], array: true
+    t.datetime "old_uptime_log", default: ["2020-03-22 18:04:05"], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "reasons_log", default: ["2020-03-22 03:00:04"], array: true
-    t.datetime "api_log", default: ["2020-03-22 03:00:04"], array: true
-    t.datetime "uptime_log", default: ["2020-03-22 03:00:04"], array: true
+    t.datetime "reasons_log", default: ["2020-03-22 18:04:05"], array: true
+    t.datetime "api_log", default: ["2020-03-22 18:04:05"], array: true
+    t.datetime "uptime_log", default: ["2020-03-22 18:04:05"], array: true
     t.text "day_log", default: [], array: true
   end
 
