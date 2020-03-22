@@ -10,6 +10,19 @@ class Ledger < ApplicationRecord
       new_occurance = @@ledger.uptime_log << occurance
       @@ledger.update(api_log: new_occurance)
     end
+
+    def self.assess_day
+      dates = @@ledger.api_log.map { |log| log.strftime("%m/%d/%Y") }
+      hash = Hash.new(0)
+      dates.each do |date|
+        if hash.key?(date)
+          hash[date] += 1
+        else
+          hash[date] = 1
+        end
+      end
+      hash
+    end
   end
 
   module Uptime
