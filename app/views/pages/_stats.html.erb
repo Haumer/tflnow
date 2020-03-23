@@ -30,7 +30,7 @@
       Reasons
       <% reasons.each do |reason| %>
         <div class="name">
-          <%= truncate reason.content, length: 60 %>
+          <%= truncate reason.content, length: 50 %>: <%= reason.incident_reasons.count %>
         </div>
       <% end %>
     </div>
