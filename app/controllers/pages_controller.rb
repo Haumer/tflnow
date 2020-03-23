@@ -15,6 +15,7 @@ class PagesController < ApplicationController
     @lines = Line.ordered_by_incidents
     @ledger = Ledger
     @reasons = Reason.ordered_by_incident_reasons
+    @severities = Reason.where.not(severity: nil).group(:severity).count
     CheckTflJob.perform_later if params[:api]
     ReasonParsingJob.perform_later if params[:reason]
   end

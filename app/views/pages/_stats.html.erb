@@ -1,6 +1,12 @@
 <div class="admin-container">
   <div class="admin-left">
-
+    <div class="admin-section">
+      <% @severities.each do |severity| %>
+        <div class="name">
+          <%= severity %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="admin-stats admin-right">
     <div class="admin-station-incidents admin-section admin-small">
