@@ -4,7 +4,7 @@
   </div>
   <div class="admin-stats admin-right">
     <div class="admin-station-incidents admin-section admin-small">
-      Incidents by Station
+      <h4>Incidents by Station</h4>
       <% stations.each do |station| %>
         <div class="admin-station">
           <% unless station.station_incidents.count.zero? %>
@@ -19,7 +19,7 @@
       <% end %>
     </div>
     <div class="admin-line-incidents admin-section admin-small">
-      Incidents by Line
+      <h4>Incidents by Line</h4>
       <% lines.each do |line| %>
         <div class="name">
           <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span> <%= line.name %>: <%= line.incidents.count %>
@@ -27,10 +27,10 @@
       <% end %>
     </div>
     <div class="admin-reasons admin-section admin-large" style="overflow:scroll; display:block">
-      Reasons
+      <h4>Reasons for delays</h4>
       <% reasons.each do |reason| %>
         <div class="name">
-          <%= truncate reason.content, length: 45 %>: <%= reason.incident_reasons.count %>
+          <%= reason.incident_reasons.count %>x <%= truncate reason.content, length: 45 %>
         </div>
       <% end %>
     </div>
