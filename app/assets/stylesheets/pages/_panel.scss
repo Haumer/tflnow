@@ -29,12 +29,15 @@
 }
 
 .admin-section {
-  margin: 25px;
   overflow: scroll;
-}
+  margin: 15px;
+  &.admin-small {
+    width: 27%;
+  }
 
-.admin-reasons {
-  width: 50%;
+  &.admin-large {
+    width: 46%;
+  }
 }
 
 .admin-sub-section {
