@@ -19,11 +19,7 @@ class ReasonParsingJob < ApplicationJob
         puts ">> #{incident.reason.strip} << already exists!"
         reason = Reason.find_by_content(incident.reason.strip)
       end
-      if reason.incident_reasons.any?
-        IncidentReason.create(reason: reason, incident: incident)
-      else
-        IncidentReason.create(reason: reason, incident: incident)
-      end
+      IncidentReason.create(reason: reason, incident: incident) if IncidentReason.where(reason: reason, incident: incident).empty?
     end
     puts "=======================================================> End"
   end

@@ -7,7 +7,6 @@ namespace :parse do
     end_time = Time.now
     Ledger::Reasons.next_occurance DateTime.now
     puts "...successfully parse! (#{end_time - start_time}s)"
-    puts Ledger::Reasons
   end
 
   desc "parse the incidents for station incidents"
