@@ -12,6 +12,7 @@ class ReasonParsingJob < ApplicationJob
         if Reason.find_by_content(incident.reason.split(":").last.strip).nil?
           reason = Reason.create!(content: incident.reason.split(":").last.strip)
           severity = incident.reason.match(/severe\s?(\w+)/i)[0] unless incident.reason.match(/severe\s?(\w+)/i).nil?
+          severity = incident.reason.match(/minor\s?(\w+)/i)[0] unless incident.reason.match(/severe\s?(\w+)/i).nil?
           reason.update(severity: severity)
           puts "NEW #{reason.content}"
         else
@@ -25,6 +26,7 @@ class ReasonParsingJob < ApplicationJob
         if Reason.find_by_content(incident.reason.strip).nil?
           reason = Reason.create!(content: incident.reason.strip)
           severity = incident.reason.match(/severe\s?(\w+)/i)[0] unless incident.reason.match(/severe\s?(\w+)/i).nil?
+          severity = incident.reason.match(/minor\s?(\w+)/i)[0] unless incident.reason.match(/severe\s?(\w+)/i).nil?
           reason.update(severity: severity)
           puts "NEW #{reason.content}"
         else
