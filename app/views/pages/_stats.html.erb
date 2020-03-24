@@ -3,7 +3,7 @@
     <div class="admin-section">
       <% @severities.each do |severity| %>
         <div class="name">
-          <%= severity %>
+          <%= severity.first %>: <%= severity.last %>
         </div>
       <% end %>
     </div>
