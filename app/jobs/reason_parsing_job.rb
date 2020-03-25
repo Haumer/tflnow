@@ -4,7 +4,7 @@ class ReasonParsingJob < ApplicationJob
   def perform(*args)
     puts "Starting: <================================================="
     # find all incidents which are less than 2 days old
-    incidents = Incident.where(created_at: 2.days.ago..DateTime::Infinity.new)
+    incidents = Incident.where(created_at: 2.days.ago..DateTime::Infinity.new, parsed: false)
     incidents.find_each do |incident|
       # NOTE: doesnt work for Hammersmith and Waterterloo => '&' in name (maybe highbury and islington too?)
       reason = nil
@@ -19,6 +19,7 @@ class ReasonParsingJob < ApplicationJob
         puts ">> #{incident.reason.strip} << already exists!"
         reason = Reason.find_by_content(incident.reason.strip)
       end
+      incident.update(parsed: true)
       IncidentReason.create(reason: reason, incident: incident) if IncidentReason.where(reason: reason, incident: incident).empty?
     end
     puts "=======================================================> End"
