@@ -23,9 +23,11 @@
               <div class="status">
                 <%= line.status %>
               </div>
-              <div class="status-reason">
-                <%= line.incidents.last.reason.gsub(/.*:\s/, "").strip %><%= "." unless line.incidents.last.reason.gsub(/.*:\s/, "").strip[-1] == "." %>
-              </div>
+              <% if line.incidents.last %>
+                <div class="status-reason">
+                  <%= line.incidents.last.reason.gsub(/.*:\s/, "").strip %><%= "." unless line.incidents.last.reason.gsub(/.*:\s/, "").strip[-1] == "." %>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
