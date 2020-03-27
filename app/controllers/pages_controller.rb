@@ -16,11 +16,15 @@ class PagesController < ApplicationController
     @ledger = Ledger
     @reasons = Reason.ordered_by_incident_reasons
     @severities = Reason.where.not(severity: nil).group(:severity).count
-    ReasonParsingJob.perform_later if params[:reason]
   end
 
   def check_tfl
     CheckTflJob.perform_now if current_user.admin?
+    redirect_to panel_path
+  end
+
+  def parse_reasons
+    ReasonParsingJob.perform_later if current_user.admin?
     redirect_to panel_path
   end
 end
