@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "map", to: "pages#map"
   get "panel", to: "pages#panel"
   get "search", to: "stations#search"
+  get "panel/check_tfl", to: "pages#check_tfl"
 
   resources :lines, only: [:show] do
     resources :incidents, only: [:show]
