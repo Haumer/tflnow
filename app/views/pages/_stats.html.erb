@@ -18,7 +18,9 @@
               <% station.lines.each do |line| %>
                 <span style="width: <%= 48 / station.lines.count %>px; background-color: <%= line.color %>; height: 12px;"></span>
               <% end %>
-              <span style="margin-left: 6px;"><%= station.name %>: <%= station.station_incidents.count %></span>
+              <%= link_to station_path(station) do %>
+                <span style="margin-left: 6px;"><%= station.name %>: <%= station.station_incidents.count %></span>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -28,7 +30,7 @@
       <h4>Incidents by Line</h4>
       <% lines.each do |line| %>
         <div class="name">
-          <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span> <%= line.name %>: <%= line.incidents.count %>
+          <span class="color" style="width: 48px; background-color: <%= line.color %>; height: 12px;"></span><%= link_to line_path(line) do %> <%= line.name %>: <%= line.incidents.count %><% end %>
         </div>
       <% end %>
     </div>
