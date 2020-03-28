@@ -20,7 +20,17 @@ class ReasonParsingJob < ApplicationJob
         reason = Reason.find_by_content(incident.reason.strip)
       end
       incident.update(parsed: true)
-      IncidentReason.create(reason: reason, incident: incident) if IncidentReason.where(reason: reason, incident: incident).empty?
+      if IncidentReason.where(reason: reason, incident: incident).empty?
+        incident_reason = IncidentReason.create(reason: reason, incident: incident)
+        affected_stations = Station.all.select do |station|
+          incident.reason.downcase.include?(station.name.downcase)
+        end
+        if affected_stations.length > 1
+          incident_reason.start_station = affected_stations[0].position
+          incident_reason.end_station = affected_stations[1].position
+          incident_reason.save
+        end
+      end
     end
     puts "=======================================================> End"
   end
