@@ -14,13 +14,7 @@ class Ledger < ApplicationRecord
     def self.assess_day
       dates = @@ledger.api_log.map { |log| log.strftime("%m/%d/%Y") }
       hash = Hash.new(0)
-      dates.each do |date|
-        if hash.key?(date)
-          hash[date] += 1
-        else
-          hash[date] = 1
-        end
-      end
+      dates.each { |date| hash.key?(date) ? hash[date] += 1 : hash[date] = 1 }
       hash
     end
   end

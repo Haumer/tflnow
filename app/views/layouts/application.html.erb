@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
   </head>
   <body>
-    <%= render 'components/navbar', status: Line.status_api? %>
+    <%= render 'components/navbar', status: Line.api_status? %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>

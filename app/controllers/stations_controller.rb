@@ -1,6 +1,5 @@
 class StationsController < ApplicationController
   def search
-
   end
 
   def show

@@ -7,9 +7,7 @@ class IncidentsController < ApplicationController
     # find stations with incidents
     @station_incidents = @stations.select do |station|
       @incident.reason.downcase.include?(station.name.downcase)
-    end.each do |sstation|
-      sstation.update!(status: "Fault")
-    end
+    end.each { |sstation| sstation.update!(status: "Fault") }
 
     # reset stations that dont have faults to Good Service
     @stations.reject do |station|

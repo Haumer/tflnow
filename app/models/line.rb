@@ -8,7 +8,7 @@ class Line < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.status_api?
+  def self.api_status?
     url = "https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status"
     req = open(url)
     response = req.read
