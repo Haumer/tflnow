@@ -1,7 +1,7 @@
 class ReasonParsingJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
+  def perform
     puts "Starting: <================================================="
     # find all incidents which are less than 2 days old
     incidents = Incident.where(created_at: 2.days.ago..DateTime::Infinity.new, parsed: false)
