@@ -20,9 +20,9 @@ class ReasonParsingJob < ApplicationJob
 
   def find_or_create_reason(incident)
     reason = nil
-    if found_incident_reason?(incident)
+    if found_reason?(incident)
       reason = Reason.create!(content: incident.reason.strip)
-      update_reason_severity(incident)
+      update_reason_severity(reason, incident)
       puts "NEW #{reason.content}"
     else
       puts ">> #{incident.reason.strip} << already exists!"
@@ -33,7 +33,7 @@ class ReasonParsingJob < ApplicationJob
   end
 
   def create_incident_reason(reason, incident)
-    if found_incident_reason?(reason)
+    if found_incident_reason?(reason, incident)
       incident_reason = IncidentReason.create(reason: reason, incident: incident)
       affected_stations = Station.all.select do |station|
         incident.reason.downcase.include?(station.name.downcase)
@@ -47,7 +47,7 @@ class ReasonParsingJob < ApplicationJob
     Reason.find_by_content(incident.reason.strip).nil?
   end
 
-  def found_incident_reason?(reason)
+  def found_incident_reason?(reason, incident)
     IncidentReason.where(reason: reason, incident: incident).empty?
   end
 
@@ -57,7 +57,7 @@ class ReasonParsingJob < ApplicationJob
     incident_reason.save
   end
 
-  def update_reason_severity(incident)
+  def update_reason_severity(reason, incident)
     severity = incident.reason.match(/severe\s?(\w+)/i)[0] unless incident.reason.match(/severe\s?(\w+)/i).nil?
     severity = incident.reason.match(/minor\s?(\w+)/i)[0] unless incident.reason.match(/severe\s?(\w+)/i).nil?
     reason.update(severity: severity)
