@@ -1,18 +1,20 @@
-# destroy all lines, branches and stations
-Line.destroy_all
-Station.destroy_all
-Branch.destroy_all
+if Rails.env.development?
+  # destroy all lines, branches and stations
+  Line.destroy_all
+  Station.destroy_all
+  Branch.destroy_all
 
-# Master vars:
-ledger = Ledger.create()
-ledger.update(api_log: ledger.api_log << DateTime.now)
-ledger.update(uptime_log: ledger.uptime_log << DateTime.now)
+  # Master vars:
+  ledger = Ledger.create()
+  ledger.update(api_log: ledger.api_log << DateTime.now)
+  ledger.update(uptime_log: ledger.uptime_log << DateTime.now)
 
-User.create(
-  admin: true,
-  password: 123456,
-  email: "admin@tflnow.com"
-)
+  User.create(
+    admin: true,
+    password: 123456,
+    email: "admin@tflnow.com"
+  )
+end
 
 # Lines
 lines_info = [
