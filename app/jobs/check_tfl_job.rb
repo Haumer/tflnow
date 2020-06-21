@@ -7,11 +7,17 @@ class CheckTflJob < ApplicationJob
     url = "https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status"
     JSON.parse(open(url).read).each do |line|
       if status_changed_or_new_day?(line)
-        found_line = Line.find_by_name(line["name"])
-        found_line.update(status: line["lineStatuses"].first["statusSeverityDescription"], last_update: line["lineStatuses"].first["created"])
+        Line.find_by_name(line["name"]).update(
+          status: line["lineStatuses"].first["statusSeverityDescription"],
+          last_update: line["lineStatuses"].first["created"]
+        )
         next unless changed_10_mins_ago?(line)
 
-        Incident.create(line: found_line, reason: line['lineStatuses'].first['reason'], status: line["lineStatuses"].first["statusSeverityDescription"])
+        Incident.create(
+          line: found_line,
+          reason: line['lineStatuses'].first['reason'],
+          status: line["lineStatuses"].first["statusSeverityDescription"]
+        )
       end
     end
   end
