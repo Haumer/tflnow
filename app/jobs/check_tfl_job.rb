@@ -9,13 +9,21 @@ class CheckTflJob < ApplicationJob
     response = req.read
     json = JSON.parse(response)
     json.each do |line|
-      if Line.find_by_name(line["name"]).status != line["lineStatuses"].first["statusSeverityDescription"]
+      if status_changed_or_new_day?(line)
         found_line = Line.find_by_name(line["name"])
         found_line.update(status: line["lineStatuses"].first["statusSeverityDescription"], last_update: line["lineStatuses"].first["created"])
-        if found_line.last_update > Time.now - 10.minutes
+        if found_line.last_update > DateTime.now - 10.minutes
           Incident.create(line: found_line, reason: line['lineStatuses'].first['reason'], status: line["lineStatuses"].first["statusSeverityDescription"])
         end
       end
     end
+  end
+
+  def status_changed_or_new_day?(line)
+    return if line.nil? || line.empty?
+
+    check_line = Line.find_by_name(line["name"])
+    status = line["lineStatuses"].first["statusSeverityDescription"]
+    check_line.status != status || check_line.last_update < DateTime.now - 1.day
   end
 end
