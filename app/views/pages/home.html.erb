@@ -1,5 +1,76 @@
 <div class="content">
   <div class="delays">
+
+  </div>
+  <div class="no-delays">
+    <div class="card-container">
+      <% @good_lines.each do |line| %>
+        <div class="line-card" style=" border: 1px solid <%= line.color %>; border-top: 5px solid <%= line.color %>;">
+          <div class="name" style="background-color: <%= line.color %>; color: white;">
+            <%= line.name %>
+          </div>
+          <div class="card-content">
+            <%= link_to line_path(line) do %>
+              <div class="status">
+                <%= line.status %>
+              </div>
+              <div class="incident-count">
+                <% unless line.incidents.empty? %>
+                  <%= pluralize(line.incidents.count, "Incident") %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="delays">
+    <div class="card-container">
+      <% if @bad_lines.empty? %>
+        <div class="delay-line-card">
+          <div class="card-content">
+            <div class="status">
+              Currently all lines seem to be working fine!
+            </div>
+            <div class="status-reason last-incident">
+              Last Incident:
+              <%= @incidents.last.reason %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <% @bad_lines.each do |line| %>
+          <div class="line-card" style=" border: 1px solid <%= line.color %>; border-top: 5px solid <%= line.color %>;">
+            <div class="name" style="background-color: <%= line.color %>; color: white;">
+              <%= line.name %>
+            </div>
+            <div class="card-content">
+              <%= link_to line_path(line) do %>
+                <div class="status">
+                  <%= line.status %>
+                </div>
+                <% if line.incidents.last %>
+                  <div class="status-reason">
+                    <%= line.incidents.last.reason.gsub(/.*:\s/, "").strip %><%= "." unless line.incidents.last.reason.gsub(/.*:\s/, "").strip[-1] == "." %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+</style>
+
+<!-- <div class="content">
+  <div class="delays">
     <% if @bad_lines.empty? %>
       <div class="delay-line-card">
         <div class="card-content">
@@ -57,5 +128,4 @@
     <% end %>
   </div>
 </div>
-
-
+ -->
