@@ -3,7 +3,7 @@
     <h2>Good Service for:</h2>
     <div class="row">
       <% @good_lines.each do |line| %>
-        <div class="col-sm-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
           <div class="line-card" style=" border: 1px solid <%= line.color %>; border-top: 5px solid <%= line.color %>;">
             <div class="name" style="background-color: <%= line.color %>; color: white;">
               <%= line.name %>
@@ -35,10 +35,12 @@
               <div class="status">
                 Currently all lines seem to be working fine!
               </div>
-              <div class="status-reason last-incident">
-                Last Incident:
-                <%= @incidents.last.reason %>
-              </div>
+              <% if @incidents.present? %>
+                <div class="status-reason last-incident">
+                  Last Incident:
+                  <%= @incidents.last.reason %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
