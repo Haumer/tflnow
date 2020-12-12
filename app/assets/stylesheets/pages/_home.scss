@@ -22,35 +22,31 @@ h1 {
   width: 100vw;
 }
 
-.delays,
-.no-delays {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  .card-container {
-    justify-content: space-around;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    .line-card {
-      border-radius: 6px;
-      width: 220px;
-      margin: 24px 12px;
-      background-color: white;
+.delays, .no-delays {
+  margin: 24px;
+  .line-card {
+    height: 134px;
+    margin: 4px 0px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.16);
+    transition: 0.3s;
+    &:hover {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+    .card-content {
       overflow: scroll;
-      .card-content {
-        padding: 6px;
-        background-color: white;
-        .status-reason {
-          font-size: 10px;
-        }
+      padding: 6px;
+      background-color: white;
+      .status-reason {
+        font-size: 10px;
       }
-      .name {
-        display: flex;
-        justify-content: space-around;
-        font-weight: bold;
-        padding-bottom: 4px;
-      }
+    }
+    .name {
+      display: flex;
+      justify-content: space-around;
+      font-weight: bold;
+      padding-bottom: 4px;
     }
   }
 }
