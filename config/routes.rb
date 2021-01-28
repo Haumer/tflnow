@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get "map", to: "pages#map"
+  get "timeline", to: "pages#timeline"
   get "panel", to: "pages#panel"
   get "search", to: "stations#search"
   get "panel/check_tfl", to: "pages#check_tfl"
