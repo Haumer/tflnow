@@ -7,7 +7,10 @@ class PagesController < ApplicationController
   end
 
   def map
+  end
 
+  def timeline
+    @incident_series = Incident.all.group_by_day { |u| u.created_at }
   end
 
   def panel

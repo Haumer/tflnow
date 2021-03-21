@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 
+gem 'http'
+gem 'groupdate'
 gem 'view_component'
 gem 'rails_admin', '~> 2.0'
 gem 'bootsnap', require: false

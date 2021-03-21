@@ -1,0 +1,6 @@
+<div class="content">
+  <% @incident_series.each do |day, incidents| %>
+    <%= day %>
+    <%= incidents.reverse.first.created_at %>
+  <% end %>
+</div>
