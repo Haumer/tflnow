@@ -8,4 +8,7 @@ namespace :api do
     Ledger::Api.next_occurance DateTime.now
     puts "...done! (#{end_time - start_time}s)"
   end
+  task :fetch_tfl_data => :environment do
+    FetchTflDataJob.perform_later
+  end
 end
