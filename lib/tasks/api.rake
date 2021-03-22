@@ -10,6 +10,6 @@ namespace :api do
   end
   desc 'Create snapshot with tfl data'
   task :fetch_tfl_data => :environment do
-    FetchTflDataJob.perform_later
+    FetchTflDataJob.perform_now
   end
 end
