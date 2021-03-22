@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_235309) do
+ActiveRecord::Schema.define(version: 2021_03_21_234634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 2020_03_27_235309) do
   end
 
   create_table "ledgers", force: :cascade do |t|
-    t.datetime "old_api_log", default: ["2020-12-12 02:45:42"], array: true
-    t.datetime "old_uptime_log", default: ["2020-12-12 02:45:42"], array: true
+    t.datetime "old_api_log", default: ["2021-03-18 20:57:41"], array: true
+    t.datetime "old_uptime_log", default: ["2021-03-18 20:57:41"], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "reasons_log", default: ["2020-12-12 02:45:43"], array: true
-    t.datetime "api_log", default: ["2020-12-12 02:45:43"], array: true
-    t.datetime "uptime_log", default: ["2020-12-12 02:45:43"], array: true
+    t.datetime "reasons_log", default: ["2021-03-18 20:57:42"], array: true
+    t.datetime "api_log", default: ["2021-03-18 20:57:42"], array: true
+    t.datetime "uptime_log", default: ["2021-03-18 20:57:42"], array: true
     t.text "day_log", default: [], array: true
   end
 
@@ -69,6 +69,12 @@ ActiveRecord::Schema.define(version: 2020_03_27_235309) do
   create_table "reasons", force: :cascade do |t|
     t.string "severity"
     t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "snapshots", force: :cascade do |t|
+    t.json "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
